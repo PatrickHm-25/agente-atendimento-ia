@@ -37,8 +37,15 @@ public class GoogleCalendarService {
         this.calendarId = calendarId;
         System.out.println(">>> CALENDAR ID: " + calendarId);
 
-        InputStream credentialsStream = getClass()
-                .getResourceAsStream("/google-credentials.json");
+        InputStream credentialsStream;
+        String credentialsBase64 = System.getenv("GOOGLE_CREDENTIALS_BASE64");
+        if (credentialsBase64 == null) {
+            credentialsStream = getClass()
+                    .getResourceAsStream("/google-credentials.json");
+        } else {
+            byte[] decoded = java.util.Base64.getDecoder().decode(credentialsBase64);
+            credentialsStream = new java.io.ByteArrayInputStream(decoded);
+        }
         System.out.println(">>> CREDENTIALS STREAM: " + credentialsStream);
 
         GoogleCredentials credentials = GoogleCredentials
