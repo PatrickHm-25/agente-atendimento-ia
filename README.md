@@ -52,7 +52,8 @@ Paciente → ChatController → Sofia (IA)
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/SeuUsuario/agente-atendimento-ia.git
+git clone
+https://github.com/PatrickHm-25/agente-atendimento-ia
 cd agente-atendimento
 ```
 
