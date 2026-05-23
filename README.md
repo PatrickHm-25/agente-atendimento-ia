@@ -54,7 +54,7 @@ Paciente → ChatController → Sofia (IA)
 ```bash
 git clone
 https://github.com/PatrickHm-25/agente-atendimento-ia
-cd agente-atendimento
+cd agente-atendimento-ia
 ```
 
 2. Crie o arquivo `.env` na raiz com:
