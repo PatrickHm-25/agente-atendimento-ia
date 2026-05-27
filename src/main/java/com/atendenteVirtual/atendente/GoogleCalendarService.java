@@ -197,16 +197,22 @@ public class GoogleCalendarService {
             - eventId: ID do evento escolhido que veio da listagem de horários
             NUNCA passe telefone, convênio, especialidade, médico, data ou hora.
             """)
+
     public String agendarConsulta(String nomePaciente, String eventId) {
         try {
             System.out.println(">>> AGENDANDO — paciente: " + nomePaciente
                     + " | eventId: " + eventId);
 
+            System.out.println(">>> BUSCANDO EVENTO NO CALENDAR...");
             Event evento = calendar.events().get(calendarId, eventId).execute();
+            System.out.println(">>> EVENTO ENCONTRADO: " + evento.getSummary());
 
             if (!evento.getSummary().startsWith("DISPONIVEL")) {
+                System.out.println(">>> HORÁRIO JÁ RESERVADO");
                 return "Este horário já foi reservado. Vou buscar outro para você!";
             }
+
+            System.out.println(">>> ATUALIZANDO EVENTO...");
 
             String[] partes = evento.getSummary().split(" - ");
             String medico = partes.length > 1 ? partes[1] : "Médico";
